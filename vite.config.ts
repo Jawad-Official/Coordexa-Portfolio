@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   server: {
     host: true, // allows external access
-    port: Number(process.env.PORT) || 8080, // <-- Render-safe dynamic port
+    port: Number(process.env.PORT) || 4000,
     allowedHosts: [
       "coordexa.com",
       "www.coordexa.com",
@@ -20,4 +20,5 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
 
