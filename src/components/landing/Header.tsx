@@ -196,10 +196,12 @@ export const Header = ({ currentStep }: HeaderProps) => {
             <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
               {/* Logo */}
               <div className="flex items-center gap-3 flex-shrink-0">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-serif font-bold text-lg">
-                    C
-                  </span>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/logo.png" 
+                    alt="Coordexa Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="font-serif text-lg font-semibold text-foreground hidden sm:inline">
                   Coordexa
@@ -224,20 +226,20 @@ export const Header = ({ currentStep }: HeaderProps) => {
                 {steps.map((step, index) => {
                   const isFullyVisible = visibleSteps.has(step.id) || !isScrolled;
                   return (
-                    <div 
-                      key={step.id}
+                  <div 
+                    key={step.id} 
                       ref={(el) => {
                         stepRefs.current[index] = el;
                       }}
                       className={`flex items-center gap-1 md:gap-1.5 lg:gap-2 whitespace-nowrap flex-shrink-0 transition-opacity duration-200 ${
-                        isScrolled ? 'animate-fade-in-slide' : ''
-                      }`}
-                      style={{
-                        animationDelay: isScrolled ? `${250 + index * 35}ms` : '0ms',
+                      isScrolled ? 'animate-fade-in-slide' : ''
+                    }`}
+                    style={{
+                      animationDelay: isScrolled ? `${250 + index * 35}ms` : '0ms',
                         opacity: isScrolled ? (isFullyVisible ? 1 : 0) : 0,
                         pointerEvents: isFullyVisible ? 'auto' : 'none',
-                      }}
-                    >
+                    }}
+                  >
                     <button
                       className="flex items-center gap-1 md:gap-1.5 group"
                       onClick={() => {
@@ -273,7 +275,7 @@ export const Header = ({ currentStep }: HeaderProps) => {
                     {index < steps.length - 1 && (
                       <div className="w-2 md:w-3 lg:w-4 h-px bg-border flex-shrink-0" />
                     )}
-                    </div>
+                  </div>
                   );
                 })}
               </div>
