@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Header } from "@/components/landing/Header";
-import { HeroSection } from "@/components/landing/HeroSection";
-import { KnowledgeSection } from "@/components/landing/KnowledgeSection";
-import { SOPSection } from "@/components/landing/SOPSection";
-import { ExecutionSection } from "@/components/landing/ExecutionSection";
-import { FreedomSection } from "@/components/landing/FreedomSection";
-import { ScoreboardsSection } from "@/components/landing/ScoreboardsSection";
-import { AIInsightsSection } from "@/components/landing/AIInsightsSection";
-import { DepartmentsSection } from "@/components/landing/DepartmentsSection";
-import { CTASection } from "@/components/landing/CTASection";
 import { CursorLight } from "@/components/CursorLight";
-import { ProfileUsersSection } from "@/components/landing/ProfileUsersSection";
+
+// Lazy-loaded components
+const HeroSection = lazy(() => import("@/components/landing/HeroSection").then(module => ({ default: module.HeroSection })));
+const KnowledgeSection = lazy(() => import("@/components/landing/KnowledgeSection").then(module => ({ default: module.KnowledgeSection })));
+const SOPSection = lazy(() => import("@/components/landing/SOPSection").then(module => ({ default: module.SOPSection })));
+const ExecutionSection = lazy(() => import("@/components/landing/ExecutionSection").then(module => ({ default: module.ExecutionSection })));
+const FreedomSection = lazy(() => import("@/components/landing/FreedomSection").then(module => ({ default: module.FreedomSection })));
+const ScoreboardsSection = lazy(() => import("@/components/landing/ScoreboardsSection").then(module => ({ default: module.ScoreboardsSection })));
+const AIInsightsSection = lazy(() => import("@/components/landing/AIInsightsSection").then(module => ({ default: module.AIInsightsSection })));
+const DepartmentsSection = lazy(() => import("@/components/landing/DepartmentsSection").then(module => ({ default: module.DepartmentsSection })));
+const CTASection = lazy(() => import("@/components/landing/CTASection").then(module => ({ default: module.CTASection })));
+const ProfileUsersSection = lazy(() => import("@/components/landing/ProfileUsersSection").then(module => ({ default: module.ProfileUsersSection })));
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -62,16 +64,18 @@ const Index = () => {
       <Header currentStep={currentStep} />
       
       <main id="main-content" aria-label="Main content">
-        <HeroSection />
-        <KnowledgeSection />
-        <SOPSection />
-        <ExecutionSection />
-        <FreedomSection />
-        <ScoreboardsSection />
-        <AIInsightsSection />
-        <DepartmentsSection />
-        <ProfileUsersSection />
-        <CTASection />
+        <Suspense fallback={<div>Loading...</div>}>
+          <HeroSection />
+          <KnowledgeSection />
+          <SOPSection />
+          <ExecutionSection />
+          <FreedomSection />
+          <ScoreboardsSection />
+          <AIInsightsSection />
+          <DepartmentsSection />
+          <ProfileUsersSection />
+          <CTASection />
+        </Suspense>
       </main>
     </div>
   );
