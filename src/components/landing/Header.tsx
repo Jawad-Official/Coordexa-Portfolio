@@ -195,23 +195,27 @@ export const Header = ({ currentStep }: HeaderProps) => {
           >
             <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
               {/* Logo */}
-              <div className="flex items-center gap-3 flex-shrink-0">
+              <a href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="Coordexa Home">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
                   <img 
                     src="/logo.png" 
-                    alt="Coordexa Logo" 
+                    alt="Coordexa Logo - Business Automation Platform" 
                     className="w-full h-full object-contain"
+                    width="32"
+                    height="32"
                   />
                 </div>
                 <span className="font-serif text-lg font-semibold text-foreground hidden sm:inline">
                   Coordexa
                 </span>
-              </div>
+              </a>
 
               {/* Desktop Journey Bar - full bar with all steps */}
-              <div 
+              <nav 
                 ref={journeyBarRef}
                 className="hidden md:flex items-center gap-1 md:gap-1.5 lg:gap-2 justify-center scrollbar-hide"
+                aria-label="Page navigation"
+                role="navigation"
                 style={{
                   flex: isScrolled ? '1 1 0%' : '0 0 0px',
                   minWidth: 0,
@@ -250,6 +254,8 @@ export const Header = ({ currentStep }: HeaderProps) => {
                           .getElementById(targetId)
                           ?.scrollIntoView({ behavior: "smooth" });
                       }}
+                      aria-label={`Navigate to ${step.label} section`}
+                      aria-current={currentStep === step.id ? "step" : undefined}
                     >
                       <div
                         className={`step-indicator ${
@@ -278,12 +284,14 @@ export const Header = ({ currentStep }: HeaderProps) => {
                   </div>
                   );
                 })}
-              </div>
+              </nav>
 
               {/* Mobile Journey Bar - current step only with slide animation */}
               {isScrolled && (
-                <div 
+                <nav 
                   className="md:hidden flex items-center gap-2 flex-1 min-w-0 justify-center relative overflow-hidden"
+                  aria-label="Current page section"
+                  role="navigation"
                   style={{
                     opacity: isScrolled ? 1 : 0,
                     transition: 'opacity 400ms ease-out 150ms',
@@ -331,7 +339,7 @@ export const Header = ({ currentStep }: HeaderProps) => {
                       {currentStepData?.label || `Step ${currentStep}`}
                     </span>
                   </div>
-                </div>
+                </nav>
               )}
 
               {/* CTA */}
@@ -342,6 +350,7 @@ export const Header = ({ currentStep }: HeaderProps) => {
                   onClick={() => {
                     document.getElementById("waitlist-section")?.scrollIntoView({ behavior: "smooth" });
                   }}
+                  aria-label="Join the waitlist"
                 >
                   Waitlist
                 </Button>
