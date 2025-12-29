@@ -51,9 +51,12 @@ export const ProfileUsersSection = () => {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-6 sm:-mt-8 transition-all duration-300 group-hover:-mt-20 sm:group-hover:-mt-24">
                 <img 
                   src={card.image} 
-                  alt={card.role}
+                  alt={`${card.role} - ${card.handle} profile customization illustration`}
                   className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 max-w-[160px] sm:max-w-[180px] md:max-w-[210px] max-h-[160px] sm:max-h-[180px] md:max-h-[210px] object-contain mx-auto shadow-lg rounded-full bg-white transition-all duration-300"
                   style={{ boxShadow: '0 6px 22px 0 rgba(32,30,70,.10)' }}
+                  loading="lazy"
+                  width="210"
+                  height="210"
                 />
               </div>
 
